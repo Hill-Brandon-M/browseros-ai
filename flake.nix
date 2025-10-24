@@ -1,0 +1,42 @@
+{
+  description = "A custom package flake for Epilogue GB Operator Playback.";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  };
+
+  outputs = { self, nixpkgs, nix }: let 
+    
+    systems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
+
+    forEachSystem = nixpkgs.lib.genAttrs systems;
+
+    overlayList = [ self.overlays.default ];
+
+    pkgsBySystem = forEachSystem ( system:
+      import nixpkgs {
+        inherit system;
+        overlays = overlayList;
+      }
+    );
+
+    pname = "epilogue-playback";
+
+  in rec {
+
+    overlays.default = final: prev: {
+      ${pname} = final.callPackage ./package.nix {};
+    };
+
+    packages = forEachSystem ( system: {
+      ${pname} = pkgsBySystem.${system}.${pname};
+      default = pkgsBySystem.${system}.${pname};
+    });
+
+    # nixosModules = import ./nixos-modules { overlays = overlayList; };      
+
+  };
+}
