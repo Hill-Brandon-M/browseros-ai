@@ -1,7 +1,7 @@
 { overlays }:
 
 {
-  analogue-pocket-sync = import ./epilogue-playback.nix;
+  analogue-pocket-sync = import ./browseros-ai.nix;
 
   overlayNixpkgsForThisInstance =
     { pkgs, ... }:

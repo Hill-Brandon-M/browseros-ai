@@ -6,12 +6,12 @@
 }:
 
 let
-  pname = "Playback";
-  version = "1.8.0";
+  pname = "BrowserOS";
+  version = "0.28.0";
 
   src = fetchurl {
-    url = "https://epilogue.nyc3.cdn.digitaloceanspaces.com/releases/software/Playback/version/${version}/release/linux/Playback.AppImage";
-    hash = "sha256-hnRUoKrYrtwXe+qBeEYhpzwtV0M/p6pM7OL1dwt4YDs=";
+    url = "https://github.com/browseros-ai/BrowserOS/releases/download/v${version}/BrowserOS_v${version}_x64.AppImage";
+    hash = "sha256-YY3g0xNr/Jm4Q1PJSg27vO+M5jur/lM2a6iTN03BbCA=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };
@@ -32,10 +32,10 @@ in appimageTools.wrapType2 rec {
   '';
 
   meta = {
-    description = "Playback is the application which allows you to play and manage your cartridges with the GB Operator. It's the heart of the experience, allowing you to replay your childhood games.";
-    homepage = "https://www.epilogue.co/";
-    downloadPage = "https://www.epilogue.co/downloads";
-    # license = lib.licenses.none;
+    description = "🌐 The open-source Agentic browser; privacy-first alternative to ChatGPT Atlas, Perplexity Comet, Dia. ";
+    homepage = "https://browseros.com/";
+    downloadPage = "https://github.com/browseros-ai/BrowserOS/releases";
+    license = lib.licenses.agpl3Only;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
     # maintainers = with lib.maintainers; [ onny ];
     platforms = [ "x86_64-linux" ];

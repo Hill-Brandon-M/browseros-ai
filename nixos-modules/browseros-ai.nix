@@ -9,7 +9,7 @@ with lib;
 
 let
 
-  pname = "epilogue-playback";
+  pname = "browseros-ai";
 
   cfg = config.services.${pname};
 

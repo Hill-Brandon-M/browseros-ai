@@ -1,5 +1,5 @@
 {
-  description = "A custom package flake for Epilogue GB Operator Playback.";
+  description = "A custom package flake for BrowserOS AI-powered browser.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -23,7 +23,7 @@
       }
     );
 
-    pname = "epilogue-playback";
+    pname = "browseros-ai";
 
   in rec {
 
