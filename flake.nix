@@ -36,7 +36,5 @@
       default = pkgsBySystem.${system}.${pname};
     });
 
-    # nixosModules = import ./nixos-modules { overlays = overlayList; };      
-
   };
 }
