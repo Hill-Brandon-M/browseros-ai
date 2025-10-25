@@ -33,7 +33,7 @@ If you are running NixOS or another distribution supported by Nix with flakes en
        let
             inputModules = ({config, pkgs, ...}: {
                 nixpkgs.overlays = [ 
-                    browseros-ai.overlay 
+                    browseros-ai.overlay.default 
                     # ... Other input overlays ...
                 ];
             });
