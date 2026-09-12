@@ -7,19 +7,17 @@
 
 let
   pname = "browseros";
-  version = "0.41.0";
+  version = "0.44.0.1";
 
   src = fetchurl {
     url = "https://github.com/browseros-ai/BrowserOS/releases/download/v${version}/BrowserOS_v${version}_x64.AppImage";
-    hash = "sha256-H9zz90XwpmiVHzD3CSO+g2IaZrM54Olerc3gsjr91Vk=";
+    hash = "sha256-ALnyVMnexYy48br9qbWaEbOZm7hJR9g39a9nYzbWXwo=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };
 
-in appimageTools.wrapType2 rec {
-  
+in appimageTools.wrapType2 {
   inherit pname version src;
-  pkgs = pkgs;
 
   extraInstallCommands = ''
     
@@ -37,6 +35,7 @@ in appimageTools.wrapType2 rec {
     downloadPage = "https://github.com/browseros-ai/BrowserOS/releases";
     license = lib.licenses.agpl3Only;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
+    mainProgram = pname;
     # maintainers = with lib.maintainers; [ onny ];
     platforms = [ "x86_64-linux" ];
   };
