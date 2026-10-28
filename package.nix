@@ -7,14 +7,16 @@
 
 let
   pname = "browseros";
-  version = "0.41.0";
+  version = "0.51.2.3";
 
   src = fetchurl {
-    url = "https://github.com/browseros-ai/BrowserOS/releases/download/v${version}/BrowserOS_v${version}_x64.AppImage";
-    hash = "sha256-H9zz90XwpmiVHzD3CSO+g2IaZrM54Olerc3gsjr91Vk=";
+    url = "https://cdn.browseros.com/download/BrowserOS_neo.AppImage";
+    hash = "sha256-YC8/42tzZqXrMviU4f/CSgNGnUN3Guj38uyRiuchFnY=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };
+
+  bname = "browserclaw";
 
 in appimageTools.wrapType2 rec {
   
@@ -23,10 +25,10 @@ in appimageTools.wrapType2 rec {
 
   extraInstallCommands = ''
     
-    install -m 444 -D ${appimageContents}/"${pname}.desktop" -t $out/share/applications
+    install -m 444 -D ${appimageContents}/"${bname}.desktop" -t $out/share/applications
     
-    substituteInPlace $out/share/applications/${pname}.desktop \
-      --replace 'Exec=AppRun' 'Exec="${pname}"'
+    substituteInPlace $out/share/applications/${bname}.desktop \
+      --replace 'Exec=AppRun' 'Exec="${bname}"'
     
     cp -r ${appimageContents}/usr/share/icons $out/share
   '';
@@ -37,7 +39,7 @@ in appimageTools.wrapType2 rec {
     downloadPage = "https://github.com/browseros-ai/BrowserOS/releases";
     license = lib.licenses.agpl3Only;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
-    # maintainers = with lib.maintainers; [ onny ];
+    # maintainers = with lib.maintainers; [ ];
     platforms = [ "x86_64-linux" ];
   };
 }
