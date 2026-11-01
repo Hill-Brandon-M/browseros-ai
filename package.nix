@@ -7,11 +7,11 @@
 
 let
   pname = "browseros";
-  version = "0.51.2.3";
+  version = "0.52.1";
 
   src = fetchurl {
-    url = "https://cdn.browseros.com/download/BrowserOS_neo.AppImage";
-    hash = "sha256-YC8/42tzZqXrMviU4f/CSgNGnUN3Guj38uyRiuchFnY=";
+    url = "https://cdn.browseros.com/releases/browserclaw/${version}/linux/BrowserOS_neo_v${version}_x64.AppImage";
+    hash = "sha256-z63diyNQZSsjgn2xBF+SRYjPiD5dhhFObI7e0yuLEhE=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };
